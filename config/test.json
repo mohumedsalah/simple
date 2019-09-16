@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "1234",
+  "db": "mongodb://root:root04@localhost:27017/simple-test?authSource=admin"
+}

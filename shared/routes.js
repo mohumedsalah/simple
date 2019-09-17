@@ -1,5 +1,5 @@
-// define router and call it sub router
+const userRouter = require('../components/users/userRouter');
 
 module.exports = app => {
-  // app.use('/api/users-login', User.loginRouter);
+  app.use('/api/user', userRouter.router);
 };

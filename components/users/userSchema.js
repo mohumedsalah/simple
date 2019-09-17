@@ -3,22 +3,45 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const user = new Schema(
   {
-    asked: {
-      type: Number,
-      default: 0
+    first_name: {
+      type: String,
+      trim: true,
+      required: true
     },
-    isArchived: {
-      type: Boolean,
-      default: false
+    last_name: {
+      type: String,
+      trim: true,
+      required: true
     },
-    tags: [
-      {
-        type: String,
-        minlength: 2,
-        maxlength: 200,
-        trim: true
-      }
-    ]
+    country_code: {
+      type: String,
+      enum: ['EG', 'US']
+    },
+    phone_number: {
+      type: String,
+      minlength: 10,
+      maxlength: 15,
+      unique: true
+    },
+    gender: {
+      type: String,
+      enum: ['male', 'female']
+    },
+    birthdate: {
+      required: true,
+      type: Date
+    },
+    avatar: {
+      required: true,
+      type: String
+    },
+    email: {
+      type: String
+    },
+    password: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true,

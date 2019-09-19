@@ -1,4 +1,4 @@
-const validateLoginRequest = require('../../validation/validateLoginRequest');
+const validateLoginRequest = require('../validation/validateLoginRequest');
 const expect = require('chai').expect;
 const { describe, beforeEach, it } = require('mocha');
 

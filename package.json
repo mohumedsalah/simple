@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "export NODE_ENV=development && nodemon",
-    "test": "export NODE_ENV=test && nodemon --exec 'mocha  ./components/*/test/*/*.js ./'",
+    "test": "export NODE_ENV=test && nodemon --exec 'mocha  ./components/*/test/*.js ./'",
+    "test_win": "SET NODE_ENV=test&& nodemon --exec \"mocha  ./components/*/test/*.js ./\"",
     "lint": "eslint --fix . && echo 'Lint complete.'",
     "watch": "watch 'clear && npm run -s test | tap-nirvana && npm run -s lint' src"
   },

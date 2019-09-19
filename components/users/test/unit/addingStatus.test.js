@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const { describe, beforeEach, it } = require('mocha');
-const validationOfAddingStatus = require('../validation/validationOfAddingStatus');
+const validationOfAddingStatus = require('../../validation/validationOfAddingStatus');
 
 describe('Unit test for validate register document', () => {
   /**

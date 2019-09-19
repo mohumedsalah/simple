@@ -9,7 +9,7 @@ const userSchema = async req => {
   let errors = {};
   errors.phone_number = requiredStringMethod(document.phone_number);
   errors.token = requiredStringMethod(document.token);
-  errors.status = objectValidation(document.password);
+  errors.status = objectValidation(document.status);
   return errors;
 };
 

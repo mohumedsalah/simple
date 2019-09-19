@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const { describe, beforeEach, it } = require('mocha');
-const validationUserDocument = require('../validation/validationUserDocument');
-const userSchema = require('../userSchema');
+const validationUserDocument = require('../../validation/validationUserDocument');
+const userSchema = require('../../userSchema');
 
 describe('Unit test for validate register document', () => {
   /**

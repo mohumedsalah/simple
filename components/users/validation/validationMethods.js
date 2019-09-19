@@ -54,7 +54,7 @@ const requiredPhoneNumber = async phone_number => {
     errors.push({ error: 'too_long', count: 15 });
   }
   const ret = await userService.findUserWithQuery({ phone_number });
-  if (!ret) {
+  if (ret) {
     errors.push({ error: 'taken' });
   }
   return errors;
@@ -80,7 +80,7 @@ const checkType = file => {
   if (errors.length) {
     return errors;
   }
-  const avatar = file.path;
+  const avatar = file.originalname;
   errors = [...errors, ...requiredStringMethod(avatar)];
   if (errors.length) {
     return errors;

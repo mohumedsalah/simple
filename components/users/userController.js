@@ -47,3 +47,16 @@ exports.logIn = async (req, res) => {
     return res.status(500).json('error from data base');
   }
 };
+
+exports.addingStatus = async (req, res) => {
+  try {
+    const user = await UserModel.findOne({
+      phone_number: req.body.user.phone_number
+    });
+    user.status = req.body.status;
+    const result = await user.save();
+    return res.status(200).json({ result: result.status });
+  } catch (error) {
+    return res.status(500).json('error from data base');
+  }
+};

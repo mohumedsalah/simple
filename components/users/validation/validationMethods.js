@@ -29,8 +29,8 @@ const requiredDate = date => {
   if (errors.length) {
     return errors;
   }
-  let Date = moment(date, 'YYYY-MM-DD');
-  const xx = moment().diff(Date);
+  let Date_ = moment(date, 'YYYY-MM-DD');
+  const xx = moment().diff(Date_);
   if (xx <= 0) {
     errors.push({ error: 'future date' });
   }
@@ -66,19 +66,26 @@ const validateEmail = async email => {
   }
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const retValidEmail = re.test(String(email).toLowerCase());
-  if (retValidEmail) {
+  if (!retValidEmail) {
     errors.push({ error: 'invalid' });
   }
   const ret = await userService.findUserWithQuery({ email: email });
-  if (!ret) {
+  if (ret) {
     errors.push({ error: 'taken' });
   }
+  return errors;
 };
-const checkType = avatar => {
-  const errors = [...requiredStringMethod(avatar)];
+const checkType = file => {
+  let errors = [...objectValidation(file)];
   if (errors.length) {
     return errors;
   }
+  const avatar = file.path;
+  errors = [...errors, ...requiredStringMethod(avatar)];
+  if (errors.length) {
+    return errors;
+  }
+
   const arrayName = avatar.split('.');
   const ext = arrayName[arrayName.length - 1].toLowerCase();
   if (ext !== 'png' && ext !== 'jpg' && ext !== 'jpeg') {
@@ -87,7 +94,16 @@ const checkType = avatar => {
   return errors;
 };
 
+const objectValidation = value => {
+  const errors = [];
+  if (typeof value !== 'object') {
+    errors.push({ error: 'blank' });
+  }
+  return errors;
+};
+
 module.exports = {
+  objectValidation,
   requiredStringMethod,
   checkType,
   validateEmail,
